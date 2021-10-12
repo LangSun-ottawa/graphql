@@ -1,0 +1,43 @@
+#查询
+type Query{
+    #查询所有的大区信息
+    wechats:[Wechat]
+    #根据wechatId查询出1个该大区的Product
+    productByWechatId(id:Int):GroupProduct
+    #根据wechatId查询出该大区的List Product
+    productsByWechatId(id:Int,limit:Int): [GroupProduct]
+
+    products:[GroupProduct]
+}
+
+
+#大区
+type Wechat{
+    #id必填
+    id: Int!
+    #大区英文名字
+    name: String
+    #大区中文名字
+    nameCn: String
+    gst: Float
+    pst: Float
+    #时区
+    timeZone : String
+    latitude1: Float
+    latitude2: Float
+    longitude1: Float
+    longitude2: Float
+    products:[GroupProduct]
+}
+
+type GroupProduct{
+    id: Float!
+
+    name:String
+
+    wechatId : Int
+
+    merchantId : Float
+
+    wechat:Wechat
+}
